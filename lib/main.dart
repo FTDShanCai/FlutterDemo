@@ -8,6 +8,7 @@ import 'package:flutter_app/main/banner.dart';
 import 'package:flutter_app/main/popup_menu_window.dart';
 import 'package:flutter_app/main/my_placeholder.dart';
 import 'package:flutter_app/main/some_basics_widget.dart';
+import 'package:flutter_app/main/my_frame.dart';
 
 enum MyWidgets {
   some_basics_widget,
@@ -18,7 +19,8 @@ enum MyWidgets {
   tab_bar,
   banner,
   popup_menu,
-  place_holder
+  place_holder,
+  my_frame
 }
 
 void main() => runApp(new MyApp());
@@ -67,7 +69,8 @@ class WidgetListState extends State<WidgetList> {
           listItemBuild('banner', '轮播图', null, MyWidgets.banner),
           listItemBuild(
               'popup_menu', '就是popWindow弹出框', null, MyWidgets.popup_menu),
-          listItemBuild('placeholder', '占位符', null, MyWidgets.place_holder)
+          listItemBuild('placeholder', '占位符', null, MyWidgets.place_holder),
+          listItemBuild('frames', '基础绘制框架', null, MyWidgets.my_frame)
         ],
       ),
     );
@@ -121,6 +124,10 @@ class WidgetListState extends State<WidgetList> {
       case MyWidgets.some_basics_widget:
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => MyBasicsWidgets()));
+        break;
+      case MyWidgets.my_frame:
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => MyFrame()));
         break;
     }
   }
