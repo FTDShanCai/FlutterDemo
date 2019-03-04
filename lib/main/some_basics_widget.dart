@@ -3,6 +3,9 @@ import 'dart:math';
 import 'package:flutter_app/util/random_color.dart';
 import 'package:flutter_app/my_widget/my_checkbox.dart';
 import 'package:flutter_app/my_widget/my_radio.dart';
+import 'package:flutter_app/my_widget/my_slider.dart';
+import 'package:flutter_app/my_widget/my_switch.dart';
+import 'package:flutter_app/my_widget/my_animated_switcher.dart';
 
 class MyBasicsWidgets extends StatefulWidget {
   @override
@@ -37,6 +40,9 @@ class MyBasicsWidgetsState extends State<MyBasicsWidgets> {
     list..add(title('TextFormField'))..add(textFormField());
     list..add(title('CheckBox'))..add(checkBox());
     list..add(title('Radio'))..add(radio());
+    list..add(title('slider'))..add(slider());
+    list..add(title('switch'))..add(mySwitch());
+    list..add(title('AnimatedSwitcher'))..add(padding(MyAnimatedSwitch()));
   }
 
   @override
@@ -194,8 +200,18 @@ class MyBasicsWidgetsState extends State<MyBasicsWidgets> {
   }
 
   //Radio
-  Widget radio(){
+  Widget radio() {
     return padding(MyRadio());
+  }
+
+  //Slider
+  Widget slider() {
+    return padding(MySlider());
+  }
+
+  //Switch
+  Widget mySwitch() {
+    return padding(MySwitch());
   }
 }
 
@@ -221,5 +237,3 @@ Widget title(String title) {
     ),
   );
 }
-
-
