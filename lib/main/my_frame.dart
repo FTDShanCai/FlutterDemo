@@ -5,8 +5,9 @@ import 'package:flutter_app/frame/my_indexed_stack.dart';
 import 'package:flutter_app/frame/my_row.dart';
 import 'package:flutter_app/frame/my_column.dart';
 import 'package:flutter_app/frame/my_listView.dart';
+import 'package:flutter_app/frame/my_refresh_indicator.dart';
 
-enum Frames { Align, Stack, IndexedStack, Row, Column ,ListView}
+enum Frames { Align, Stack, IndexedStack, Row, Column ,ListView,refreshIndicator}
 
 class MyFrame extends StatefulWidget {
   @override
@@ -27,6 +28,7 @@ class MyFrameState extends State<MyFrame> {
     list..add(itemView('Row', Icons.rowing, Frames.Row));
     list..add(itemView('Column', Icons.account_balance, Frames.Column));
     list..add(itemView('ListView', Icons.list, Frames.ListView));
+    list..add(itemView('Indicator', Icons.refresh, Frames.refreshIndicator));
   }
 
   @override
@@ -78,6 +80,11 @@ class MyFrameState extends State<MyFrame> {
           return MyListView();
         }));
         break;
+      case Frames.refreshIndicator:
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return MyRefreshIndicator();
+        }));
+        break;
     }
   }
 
@@ -87,7 +94,8 @@ class MyFrameState extends State<MyFrame> {
       onTap: () {
         _itemCLick(type);
       },
-      child: Center(
+      child: Container(
+        alignment: Alignment.center,
         child: Column(
           children: <Widget>[
             SizedBox.fromSize(
