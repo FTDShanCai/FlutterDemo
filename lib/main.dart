@@ -57,6 +57,7 @@ class WidgetListState extends State<WidgetList> {
         children: <Widget>[
           listItemBuild('some_basics_widget', '基础控件', Icons.unfold_more,
               MyWidgets.some_basics_widget),
+          listItemBuild('frames', '基础绘制框架', null, MyWidgets.my_frame),
           listItemBuild('bottom_appbar', 'FloatingActionButton 和底部的应用', null,
               MyWidgets.bottom_appbar),
           listItemBuild('bottom_navigator', 'Material design 风格bottombar', null,
@@ -70,7 +71,7 @@ class WidgetListState extends State<WidgetList> {
           listItemBuild(
               'popup_menu', '就是popWindow弹出框', null, MyWidgets.popup_menu),
           listItemBuild('placeholder', '占位符', null, MyWidgets.place_holder),
-          listItemBuild('frames', '基础绘制框架', null, MyWidgets.my_frame)
+
         ],
       ),
     );

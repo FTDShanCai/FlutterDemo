@@ -95,6 +95,8 @@ class MyFrameState extends State<MyFrame> {
         _itemCLick(type);
       },
       child: Container(
+        height: 100,
+        width: 100,
         alignment: Alignment.center,
         child: Column(
           children: <Widget>[
