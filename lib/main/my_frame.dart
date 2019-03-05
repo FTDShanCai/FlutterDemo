@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/frame/Align.dart';
+import 'package:flutter_app/frame/my_align.dart';
+import 'package:flutter_app/frame/my_stack.dart';
 
 enum Frames { Align, Stack, IndexedStack, Row, Column }
 
@@ -47,6 +48,10 @@ class MyFrameState extends State<MyFrame> {
         }));
         break;
       case Frames.Stack:
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return MyStack();
+        }));
+
         break;
       case Frames.IndexedStack:
         break;
@@ -66,7 +71,9 @@ class MyFrameState extends State<MyFrame> {
       child: Center(
         child: Column(
           children: <Widget>[
-            SizedBox.fromSize(size: Size.fromHeight(20),),
+            SizedBox.fromSize(
+              size: Size.fromHeight(20),
+            ),
             Padding(
               padding: EdgeInsets.all(10.0),
               child: Icon(icon, color: Colors.lightBlue),
