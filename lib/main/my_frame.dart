@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/frame/my_align.dart';
 import 'package:flutter_app/frame/my_stack.dart';
+import 'package:flutter_app/frame/my_indexed_stack.dart';
+import 'package:flutter_app/frame/my_row.dart';
+import 'package:flutter_app/frame/my_column.dart';
+import 'package:flutter_app/frame/my_listView.dart';
 
-enum Frames { Align, Stack, IndexedStack, Row, Column }
+enum Frames { Align, Stack, IndexedStack, Row, Column ,ListView}
 
 class MyFrame extends StatefulWidget {
   @override
@@ -22,6 +26,7 @@ class MyFrameState extends State<MyFrame> {
     list..add(itemView('IndexedStack', Icons.star, Frames.IndexedStack));
     list..add(itemView('Row', Icons.rowing, Frames.Row));
     list..add(itemView('Column', Icons.account_balance, Frames.Column));
+    list..add(itemView('ListView', Icons.list, Frames.ListView));
   }
 
   @override
@@ -54,10 +59,24 @@ class MyFrameState extends State<MyFrame> {
 
         break;
       case Frames.IndexedStack:
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return MyIndexedStack();
+        }));
         break;
       case Frames.Row:
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return MyRow();
+        }));
         break;
       case Frames.Column:
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return MyColumn();
+        }));
+        break;
+      case Frames.ListView:
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return MyListView();
+        }));
         break;
     }
   }
