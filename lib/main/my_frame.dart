@@ -6,8 +6,9 @@ import 'package:flutter_app/frame/my_row.dart';
 import 'package:flutter_app/frame/my_column.dart';
 import 'package:flutter_app/frame/my_listView.dart';
 import 'package:flutter_app/frame/my_refresh_indicator.dart';
+import 'package:flutter_app/frame/my_stepper.dart';
 
-enum Frames { Align, Stack, IndexedStack, Row, Column ,ListView,refreshIndicator}
+enum Frames { Align, Stack, IndexedStack, Row, Column ,ListView,refreshIndicator,Stepper}
 
 class MyFrame extends StatefulWidget {
   @override
@@ -29,6 +30,7 @@ class MyFrameState extends State<MyFrame> {
     list..add(itemView('Column', Icons.account_balance, Frames.Column));
     list..add(itemView('ListView', Icons.list, Frames.ListView));
     list..add(itemView('Indicator', Icons.refresh, Frames.refreshIndicator));
+    list..add(itemView('Stepper', Icons.navigation, Frames.Stepper));
   }
 
   @override
@@ -83,6 +85,11 @@ class MyFrameState extends State<MyFrame> {
       case Frames.refreshIndicator:
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           return MyRefreshIndicator();
+        }));
+        break;
+      case Frames.Stepper:
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return MyStepper();
         }));
         break;
     }
