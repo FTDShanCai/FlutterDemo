@@ -7,8 +7,10 @@ import 'package:flutter_app/frame/my_column.dart';
 import 'package:flutter_app/frame/my_listView.dart';
 import 'package:flutter_app/frame/my_refresh_indicator.dart';
 import 'package:flutter_app/frame/my_stepper.dart';
+import 'package:flutter_app/frame/my_card_view.dart';
+import 'package:flutter_app/frame/my_progress_indicator.dart';
 
-enum Frames { Align, Stack, IndexedStack, Row, Column ,ListView,refreshIndicator,Stepper}
+enum Frames { Align, Stack, IndexedStack, Row, Column ,ListView,refreshIndicator,Stepper,Card,Progress}
 
 class MyFrame extends StatefulWidget {
   @override
@@ -31,6 +33,8 @@ class MyFrameState extends State<MyFrame> {
     list..add(itemView('ListView', Icons.list, Frames.ListView));
     list..add(itemView('Indicator', Icons.refresh, Frames.refreshIndicator));
     list..add(itemView('Stepper', Icons.navigation, Frames.Stepper));
+    list..add(itemView('Card',Icons.card_membership, Frames.Card));
+    list..add(itemView('Progress', Icons.fast_rewind, Frames.Progress));
   }
 
   @override
@@ -90,6 +94,16 @@ class MyFrameState extends State<MyFrame> {
       case Frames.Stepper:
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           return MyStepper();
+        }));
+        break;
+      case Frames.Card:
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return MyCardView();
+        }));
+        break;
+      case Frames.Progress:
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return MyProgressIndicator();
         }));
         break;
     }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_app/main/bottom_appbar.dart';
 import 'package:flutter_app/main/searchbar.dart';
 import 'package:flutter_app/main/bottom_navigator.dart';
@@ -9,6 +10,7 @@ import 'package:flutter_app/main/popup_menu_window.dart';
 import 'package:flutter_app/main/my_placeholder.dart';
 import 'package:flutter_app/main/some_basics_widget.dart';
 import 'package:flutter_app/main/my_frame.dart';
+import 'package:flutter_app/main/my_anim.dart';
 
 enum MyWidgets {
   some_basics_widget,
@@ -20,15 +22,24 @@ enum MyWidgets {
   banner,
   popup_menu,
   place_holder,
-  my_frame
+  my_frame,
+  my_anim,
+  interactive
 }
 
 void main() => runApp(new MyApp());
+const jumpPlugin = const MethodChannel('com.example.flutterapp/plugin');
+
+Future<Null> _jumpToNative() async {
+  Map<String, String> map = { "flutter": "这是一条来自flutter的参数" };
+  String result = await jumpPlugin.invokeMethod('oneAct',map);
+  print(result);
+}
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
+
     return MaterialApp(
       title: 'app',
       home: WidgetList(),
@@ -58,6 +69,7 @@ class WidgetListState extends State<WidgetList> {
           listItemBuild('some_basics_widget', '基础控件', Icons.unfold_more,
               MyWidgets.some_basics_widget),
           listItemBuild('frames', '基础绘制框架', null, MyWidgets.my_frame),
+          listItemBuild('Anim', '动画', null, MyWidgets.my_anim),
           listItemBuild('bottom_appbar', 'FloatingActionButton 和底部的应用', null,
               MyWidgets.bottom_appbar),
           listItemBuild('bottom_navigator', 'Material design 风格bottombar', null,
@@ -71,7 +83,7 @@ class WidgetListState extends State<WidgetList> {
           listItemBuild(
               'popup_menu', '就是popWindow弹出框', null, MyWidgets.popup_menu),
           listItemBuild('placeholder', '占位符', null, MyWidgets.place_holder),
-
+          listItemBuild('interactive', '与原生的交互', null, MyWidgets.interactive)
         ],
       ),
     );
@@ -129,6 +141,13 @@ class WidgetListState extends State<WidgetList> {
       case MyWidgets.my_frame:
         Navigator.push(
             context, MaterialPageRoute(builder: (context) => MyFrame()));
+        break;
+      case MyWidgets.my_anim:
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => MyAnim()));
+        break;
+      case MyWidgets.interactive:
+        _jumpToNative();
         break;
     }
   }
