@@ -16,7 +16,7 @@ public class MainActivity extends FlutterActivity {
 
     private static void registerCustomPlugin(PluginRegistry registrar) {
         AndroidPluginAct.registerWith(registrar.registrarFor(AndroidPluginAct.CHANNEL));
-        FlutterPluginAct.registerWith(registrar.registrarFor(FlutterPluginAct.CHANNEL));
+//        FlutterPluginAct.registerWith(registrar.registrarFor(FlutterPluginAct.CHANNEL));
     }
 
 }

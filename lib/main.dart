@@ -11,6 +11,7 @@ import 'package:flutter_app/main/my_placeholder.dart';
 import 'package:flutter_app/main/some_basics_widget.dart';
 import 'package:flutter_app/main/my_frame.dart';
 import 'package:flutter_app/main/my_anim.dart';
+import 'package:flutter_app/net/my_net.dart';
 
 enum MyWidgets {
   some_basics_widget,
@@ -24,22 +25,22 @@ enum MyWidgets {
   place_holder,
   my_frame,
   my_anim,
-  interactive
+  interactive,
+  net
 }
 
 void main() => runApp(new MyApp());
 const jumpPlugin = const MethodChannel('com.example.flutterapp/plugin');
 
 Future<Null> _jumpToNative() async {
-  Map<String, String> map = { "flutter": "这是一条来自flutter的参数" };
-  String result = await jumpPlugin.invokeMethod('oneAct',map);
+  Map<String, String> map = {"flutter": "这是一条来自flutter的参数"};
+  String result = await jumpPlugin.invokeMethod('oneAct', map);
   print(result);
 }
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
     return MaterialApp(
       title: 'app',
       home: WidgetList(),
@@ -83,7 +84,8 @@ class WidgetListState extends State<WidgetList> {
           listItemBuild(
               'popup_menu', '就是popWindow弹出框', null, MyWidgets.popup_menu),
           listItemBuild('placeholder', '占位符', null, MyWidgets.place_holder),
-          listItemBuild('interactive', '与原生的交互', null, MyWidgets.interactive)
+          listItemBuild('interactive', '与原生的交互', null, MyWidgets.interactive),
+          listItemBuild('http', '网络请求', Icons.network_check, MyWidgets.net)
         ],
       ),
     );
@@ -148,6 +150,10 @@ class WidgetListState extends State<WidgetList> {
         break;
       case MyWidgets.interactive:
         _jumpToNative();
+        break;
+      case MyWidgets.net:
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => MyNet()));
         break;
     }
   }

@@ -1,6 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/anim/my_animatedContainer.dart';
-enum AnimS { AnimatedContainer,}
+import 'package:flutter_app/anim/my_logo.dart';
+import 'package:flutter_app/anim/my_custom_anim.dart';
+
+enum AnimS { AnimatedContainer, TWEEN, CustomAnim }
 
 class MyAnim extends StatefulWidget {
   @override
@@ -15,7 +19,12 @@ class MyAnimState extends State<MyAnim> {
   @override
   void initState() {
     super.initState();
-    list..add(itemView('AnimatedContainer', Icons.transform, AnimS.AnimatedContainer));
+    list
+      ..add(itemView(
+          'AnimatedContainer', Icons.transform, AnimS.AnimatedContainer));
+    list..add(itemView('TWEEN', Icons.track_changes, AnimS.TWEEN));
+    list
+      ..add(itemView('路由过度Anim', Icons.border_horizontal, AnimS.CustomAnim));
   }
 
   @override
@@ -39,6 +48,16 @@ class MyAnimState extends State<MyAnim> {
       case AnimS.AnimatedContainer:
         Navigator.push(context, MaterialPageRoute(builder: (context) {
           return MyAnimatedContainer();
+        }));
+        break;
+      case AnimS.TWEEN:
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return MyLogo();
+        }));
+        break;
+      case AnimS.CustomAnim:
+        Navigator.push(context, MaterialPageRoute(builder: (context) {
+          return MyCustomAnim();
         }));
         break;
     }
